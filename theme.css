@@ -1,0 +1,491 @@
+/* ==========================================================================
+   טופ שבמתמחים — תוספות עיצוב (מצב בהיר/כהה + חלונית "צור עמנו קשר")
+   --------------------------------------------------------------------------
+   הקובץ הזה נטען אחרי style.css / style-2.css ואינו משנה אותם כלל.
+   הוא אחראי על שלושה דברים בלבד:
+
+     1. מצב בהיר — כל הכללים של המצב הבהיר מוגדרים תחת [data-theme="light"],
+        כך שבמצב כהה (ברירת המחדל) שום דבר באתר לא משתנה.
+     2. כפתור החלפה בין המצבים, בפינה הימנית התחתונה.
+     3. עיצוב חלונית "צור עמנו קשר" (נבנית ע"י contact-widget.js).
+
+   את המצב בפועל מחיל site.js — הוא שם data-theme על תגית <html>.
+   ========================================================================== */
+
+/* ---------- 1. משתני חלונית "צור עמנו קשר" (מצב כהה = ברירת מחדל) ---------- */
+:root {
+    --cw-panel: #1c1c1e;
+    --cw-input: #2c2c2e;
+    --cw-border: #38383a;
+    --cw-text: #ffffff;
+    --cw-muted: rgba(255, 255, 255, 0.78);
+    --cw-accent: #38bdf8;
+    --cw-accent-shadow: rgba(56, 189, 248, 0.25);
+    --cw-hover: rgba(128, 128, 128, 0.2);
+}
+
+/* ---------- 2. משתני המצב הבהיר ---------- */
+[data-theme="light"] {
+    color-scheme: light;
+
+    --cw-panel: #ffffff;
+    --cw-input: #f4f6fb;
+    --cw-border: #e2e7f0;
+    --cw-text: #101725;
+    --cw-muted: rgba(16, 23, 37, 0.72);
+    --cw-accent: #0ea5e9;
+    --cw-accent-shadow: rgba(14, 165, 233, 0.25);
+    --cw-hover: rgba(16, 23, 37, 0.08);
+}
+
+/* ---------- 3. כפתור מצב בהיר/כהה ---------- */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(22, 28, 45, 0.85);
+    border: 1px solid #2a3143;
+    color: #3b82f6;
+    font-size: 1.15rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10000;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.25s ease, background-color 0.35s ease,
+                color 0.35s ease, border-color 0.35s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.08) rotate(-12deg);
+    border-color: #3b82f6;
+}
+
+[data-theme="light"] .theme-toggle {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: #dbe1ec;
+    color: #2563eb;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.12);
+}
+
+/* ---------- 4. חלונית "צור עמנו קשר" ---------- */
+/* חשוב: לא מגדירים font-family על "כל האלמנטים" בחלונית, כי זה דורס את
+   הפונט של Font Awesome והאייקונים נעלמים. */
+.contact-block,
+.widget-toggle {
+    font-family: 'Heebo', 'IBM Plex Sans Hebrew', sans-serif;
+}
+
+.contact-block * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.widget-toggle * {
+    box-sizing: border-box;
+}
+
+.contact-block {
+    position: fixed;
+    bottom: 90px;
+    left: 20px;
+    width: 400px;
+    max-width: calc(100vw - 40px);
+    max-height: calc(100vh - 130px);
+    overflow-y: auto;
+    background: var(--cw-panel);
+    border: 1px solid var(--cw-border);
+    z-index: 9999;
+    transform-origin: bottom left;
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 24px;
+}
+
+.contact-block.open {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.widget-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--cw-accent);
+    color: #ffffff;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.widget-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* החלפת האייקון בכפתור נעשתה ב-CSS כדי לא לנתק את האייקון מה-DOM */
+.widget-toggle .widget-icon-opened {
+    display: none;
+}
+
+.widget-toggle[aria-expanded="true"] .widget-icon-closed {
+    display: none;
+}
+
+.widget-toggle[aria-expanded="true"] .widget-icon-opened {
+    display: inline-block;
+}
+
+.contact-header {
+    padding: 25px 25px 15px 25px;
+    border-bottom: 1px solid var(--cw-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--cw-panel);
+}
+
+.contact-header-text h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--cw-text);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: right;
+    text-shadow: none;
+}
+
+.contact-header-text h2 i {
+    color: var(--cw-accent);
+}
+
+.contact-header-text p {
+    font-size: 0.9rem;
+    color: var(--cw-muted);
+    line-height: 1.4;
+    text-align: right;
+    margin: 0;
+}
+
+.header-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.icon-btn {
+    background: transparent;
+    border: none;
+    color: var(--cw-text);
+    font-size: 1.1rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    background: var(--cw-hover);
+    color: var(--cw-accent);
+}
+
+.contact-form {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--cw-text);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.form-group label i {
+    color: var(--cw-accent);
+    font-size: 0.85rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 14px;
+    background: var(--cw-input);
+    border: 1px solid var(--cw-border);
+    border-radius: 10px;
+    color: var(--cw-text);
+    font-size: 0.95rem;
+    font-family: inherit; /* שדות וכפתורים לא יורשים פונט כברירת מחדל */
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-control::placeholder {
+    color: var(--cw-text);
+    opacity: 0.45;
+}
+
+.form-control:focus {
+    border-color: var(--cw-accent);
+    box-shadow: 0 0 0 3px var(--cw-accent-shadow);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    background: var(--cw-accent);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 12px var(--cw-accent-shadow);
+    margin-top: 5px;
+}
+
+.btn-submit:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.status-msg {
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+    display: none;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.status-msg.success {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid #10b981;
+    color: #10b981;
+    display: block;
+}
+
+.status-msg.error {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid #ef4444;
+    color: #ef4444;
+    display: block;
+}
+
+/* ---------- 5. מצב בהיר: התאמת צבעי האתר הקיים ----------
+   כל הכללים בסעיף הזה חלים אך ורק במצב בהיר. במצב כהה שום דבר לא משתנה. */
+
+[data-theme="light"] body {
+    background-color: #f4f6fb;
+    color: #1c2130;
+}
+
+[data-theme="light"] .background-container {
+    background: linear-gradient(135deg, #ffffff 0%, #eef1f8 100%);
+}
+
+[data-theme="light"] .glow-1 {
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.14) 0%, rgba(37, 99, 235, 0.04) 40%, transparent 70%);
+}
+
+[data-theme="light"] .glow-2 {
+    background: radial-gradient(circle, rgba(217, 119, 6, 0.1) 0%, rgba(217, 119, 6, 0.03) 35%, transparent 65%);
+}
+
+[data-theme="light"] .symbol {
+    opacity: 0.06;
+    color: #2563eb;
+}
+
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3 {
+    color: #101725;
+    text-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="light"] p {
+    color: #5b6478;
+}
+
+[data-theme="light"] hr {
+    background-color: #b07d14;
+}
+
+[data-theme="light"] abbr {
+    text-decoration-color: #2563eb;
+    color: #1c2130;
+}
+
+[data-theme="light"] .profile-link,
+[data-theme="light"] .back-link {
+    color: #2563eb;
+}
+
+[data-theme="light"] .profile-link:hover,
+[data-theme="light"] .back-link:hover {
+    color: #b07d14;
+}
+
+[data-theme="light"] ul {
+    background-color: rgba(255, 255, 255, 0.88);
+    border-color: #dbe1ec;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="light"] li {
+    color: #1c2130;
+}
+
+/* רכיב code עם עיצוב מוטבע בתוך עמוד — נדרש !important כדי לעקוף אותו */
+[data-theme="light"] code {
+    background: #e6ebf5 !important;
+    color: #1d4ed8 !important;
+}
+
+[data-theme="light"] .download-btn {
+    color: #2563eb;
+    border-color: #2563eb;
+}
+
+[data-theme="light"] .download-btn:hover {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+[data-theme="light"] .guide-image {
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.16);
+    border-color: #dbe1ec;
+}
+
+[data-theme="light"] footer {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #1c2130;
+    border-top-color: #b07d14;
+}
+
+[data-theme="light"] footer h1 {
+    color: #1c2130;
+}
+
+[data-theme="light"] .pro-card {
+    background-color: rgba(255, 255, 255, 0.88);
+    border-color: #dbe1ec;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="light"] .pro-card:hover {
+    box-shadow: 0 14px 28px rgba(37, 99, 235, 0.22);
+    border-color: #2563eb;
+}
+
+[data-theme="light"] .pro-card-img {
+    border-bottom-color: #dbe1ec;
+}
+
+[data-theme="light"] .pro-card-title {
+    color: #101725;
+}
+
+[data-theme="light"] .pro-card-desc,
+[data-theme="light"] .card-icon-text {
+    color: #5b6478;
+}
+
+[data-theme="light"] .pro-card-footer {
+    border-top-color: #dbe1ec;
+}
+
+/* ---------- 6. מסכים קטנים ---------- */
+@media (max-width: 640px) {
+    .theme-toggle {
+        width: 44px;
+        height: 44px;
+        bottom: 14px;
+        right: 14px;
+        font-size: 1rem;
+    }
+
+    .contact-block {
+        left: 10px;
+        right: 10px;
+        width: auto;
+        max-width: none;
+        bottom: 84px;
+        max-height: calc(100vh - 110px);
+    }
+
+    .contact-form {
+        padding: 18px;
+        gap: 12px;
+    }
+
+    .contact-header {
+        padding: 20px 18px 12px 18px;
+    }
+
+    textarea.form-control {
+        min-height: 70px;
+    }
+
+    .widget-toggle {
+        width: 54px;
+        height: 54px;
+        bottom: 14px;
+        left: 14px;
+        font-size: 21px;
+    }
+}
