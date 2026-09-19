@@ -1,7 +1,14 @@
 /* ==========================================================================
    טופ שבמתמחים — מצב בהיר / מצב כהה
-   הקובץ הזה מטמיע את המצב הנבחר מיד עם טעינת הדף (בלי "הבזק"),
-   ומוסיף כפתור צף להחלפה בין המצבים בפינה השמאלית העליונה.
+   --------------------------------------------------------------------------
+   ברירת המחדל נקבעת לפי הגדרת מערכת ההפעלה של הגולש (בהיר או כהה).
+   ברגע שהגולש לוחץ על הכפתור הצף, הבחירה שלו נשמרת ב-localStorage ומכאן היא
+   זו שקובעת בכל טעינה — עד שהוא יחליף שוב.
+
+   רוצים שכולם תמיד ייפתחו במצב כהה, בלי קשר להגדרות המערכת? החליפו את השורה
+       applyTheme(readStored() || systemTheme());
+   בשורה
+       applyTheme(readStored() || 'dark');
    ========================================================================== */
 (function () {
     'use strict';
@@ -22,6 +29,15 @@
         try { localStorage.setItem(STORAGE_KEY, theme); } catch (err) { /* מצב פרטי / חסימת אחסון */ }
     }
 
+    /* מה הגולש הגדיר במערכת ההפעלה שלו */
+    function systemTheme() {
+        try {
+            return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        } catch (err) {
+            return 'dark';
+        }
+    }
+
     function applyTheme(theme) {
         root.setAttribute('data-theme', theme);
 
@@ -38,13 +54,8 @@
         button.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
     }
 
-    /*
-       מוחל מיד, עוד לפני שהדף מצטייר, כדי שלא יהיה "הבזק" של המצב הלא נכון.
-       ברירת המחדל היא מצב כהה — כמו שהאתר נראה תמיד.
-       רוצים שהאתר ייפתח לפי הגדרת מערכת ההפעלה של הגולש? החליפו את השורה למטה ב:
-           applyTheme(readStored() || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
-    */
-    applyTheme(readStored() || 'dark');
+    /* מוחל מיד, עוד לפני שהדף מצטייר, כדי שלא יהיה "הבזק" של המצב הלא נכון */
+    applyTheme(readStored() || systemTheme());
 
     document.addEventListener('DOMContentLoaded', function () {
         var button = document.createElement('button');
@@ -52,12 +63,22 @@
         button.id = 'themeToggle';
         button.className = 'theme-toggle';
         document.body.appendChild(button);
-        applyTheme(root.getAttribute('data-theme') || 'dark');
+        applyTheme(root.getAttribute('data-theme') || systemTheme());
 
         button.addEventListener('click', function () {
             var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
             applyTheme(next);
-            store(next);
+            store(next); /* בחירה ידנית — מכאן היא זו שקובעת */
         });
+
+        /* אם הגולש לא בחר ידנית, עוקבים גם אחרי שינוי בהגדרות המערכת בזמן אמת */
+        try {
+            var query = window.matchMedia('(prefers-color-scheme: light)');
+            var onSystemChange = function (event) {
+                if (!readStored()) applyTheme(event.matches ? 'light' : 'dark');
+            };
+            if (query.addEventListener) query.addEventListener('change', onSystemChange);
+            else if (query.addListener) query.addListener(onSystemChange);
+        } catch (err) { /* דפדפן ישן */ }
     });
 })();
