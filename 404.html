@@ -5,10 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>הדף לא נמצא | טופ שבמתמחים</title>
     <script>
-        /* האתר עבר מ-/BLOG/ לשורש הדומיין — קישורים ישנים מועברים לכתובת החדשה */
+        /* קישורים ישנים: האתר עבר מ-/BLOG/ לשורש הדומיין, וכל דפי הפרויקטים אוחדו לדף אחד */
         (function () {
-            var m = location.pathname.match(/^\/BLOG(\/.*)?$/i);
-            if (m) location.replace((m[1] || '/') + location.search + location.hash);
+            var MOVED = {
+                'top-gif.html': '/#top-gif',
+                'chatsapp.html': '/#chatsapp',
+                'guide.html': '/#chat-formatter',
+                'mit.html': '/#quick-reply',
+                'emogi.html': '/#emoji',
+                'link-to-new-guide.html': '/',
+                'convertop.html': '/#convertop',
+                'adshield.html': '/#adshield',
+                'index.html': '/',
+                'guide-pic.png': '/img/guide-tampermonkey.png',
+                'guide-pic-2.png': '/img/shot-chat-formatter.png',
+                'pic3.png': '/img/guide-dev-mode.png',
+                'pic4.png': '/img/guide-load-unpacked.png',
+                'pic-mit.png': '/img/shot-quick-reply.png',
+                'gif.gif': '/img/shot-emoji.gif'
+            };
+            var path = location.pathname;
+            try { path = decodeURIComponent(path); } catch (err) { /* כתובת לא תקינה */ }
+            path = path.replace(/^\/BLOG(?=\/|$)/i, '') || '/';
+            var name = path.replace(/^\/+/, '').toLowerCase();
+            var target = MOVED[name] || (path !== location.pathname ? path : null);
+            if (target) location.replace(target.indexOf('#') === -1 ? target + location.search + location.hash : target);
         })();
     </script>
     <link rel="icon" type="image/png" href="/img/favicon.png">

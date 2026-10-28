@@ -1,8 +1,9 @@
 /* ==========================================================================
    טופ שבמתמחים — התנהגויות קטנות בממשק
    1. חיפוש וסינון כרטיסי הפרויקטים בדף הבית
-   2. לשוניות של שיטות התקנה בדפי הפרויקטים
+   2. לשוניות של שיטות התקנה בחלוניות הפרויקטים
    3. כפתורי "העתק" ליד פקודות וכתובות
+   4. פתיחה וסגירה של חלוניות הפרויקטים לפי הכתובת
    ========================================================================== */
 (function () {
     'use strict';
@@ -66,7 +67,7 @@
             /* "/" ממקד את שדה החיפוש */
             document.addEventListener('keydown', function (e) {
                 var t = e.target;
-                if (e.key === '/' && t && !/INPUT|TEXTAREA|SELECT/.test(t.tagName) && !t.isContentEditable) {
+                if (e.key === '/' && t && !/INPUT|TEXTAREA|SELECT/.test(t.tagName) && !t.isContentEditable && !document.querySelector('dialog[open]')) {
                     e.preventDefault();
                     input.focus();
                 }
@@ -109,10 +110,11 @@
             btn.addEventListener('click', function () {
                 var text = btn.getAttribute('data-copy');
                 var done = function () {
-                    var old = btn.textContent;
+                    if (btn.classList.contains('done')) return;
+                    var old = btn.innerHTML;
                     btn.textContent = 'הועתק ✓';
                     btn.classList.add('done');
-                    setTimeout(function () { btn.textContent = old; btn.classList.remove('done'); }, 1600);
+                    setTimeout(function () { btn.innerHTML = old; btn.classList.remove('done'); }, 1600);
                 };
                 if (navigator.clipboard && navigator.clipboard.writeText) {
                     navigator.clipboard.writeText(text).then(done, function () {});
@@ -128,9 +130,83 @@
         });
     }
 
+    /* ---------- 4. חלוניות הפרויקטים ----------
+       הכתובת קובעת איזו חלונית פתוחה: #top-gif פותח את Top Gif, בלי # הכול סגור.
+       כך אפשר לשתף קישור ישיר לפרויקט, וכפתור "חזרה" בדפדפן סוגר את החלונית. */
+    function initDialogs() {
+        var dialogs = {};
+        Array.prototype.forEach.call(document.querySelectorAll('dialog[data-project]'), function (d) {
+            dialogs[d.getAttribute('data-project')] = d;
+        });
+        var current = null;
+        var pushed = false;   /* החלונית נפתחה בלחיצה בדף, ולכן נוספה רשומה להיסטוריה */
+        var syncing = false;  /* סגירה שנובעת משינוי בכתובת — לא נוגעים בהיסטוריה */
+        var opener = null;
+
+        function hashId() {
+            try { return decodeURIComponent(location.hash.slice(1)); } catch (err) { return ''; }
+        }
+
+        /* הניקוי רץ מיד ולא מחכה לאירוע close, שבחלק מהדפדפנים מגיע באיחור */
+        function afterClose(d) {
+            if (current !== d) return;
+            current = null;
+            document.body.classList.remove('dialog-open');
+            if (!syncing && hashId() === d.getAttribute('data-project')) {
+                if (pushed) history.back();
+                else history.replaceState(null, '', location.pathname + location.search);
+            }
+            pushed = false;
+            if (opener) { opener.focus({ preventScroll: true }); opener = null; }
+        }
+
+        function hide(d) {
+            if (d.open) d.close();
+            afterClose(d);
+        }
+
+        function closeSilently() {
+            if (!current) return;
+            syncing = true;
+            hide(current);
+            syncing = false;
+        }
+
+        function sync() {
+            var d = dialogs[hashId()] || null;
+            if (d === current) return;
+            closeSilently();
+            if (!d) return;
+            if (!d.open) d.showModal();
+            current = d;
+            document.body.classList.add('dialog-open');
+            var scroller = d.querySelector('.d-scroll');
+            if (scroller) scroller.scrollTop = 0;
+        }
+
+        Object.keys(dialogs).forEach(function (id) {
+            var d = dialogs[id];
+            d.addEventListener('close', function () { afterClose(d); });
+            d.addEventListener('cancel', function (e) { e.preventDefault(); hide(d); });  /* מקש Esc */
+            /* לחיצה על הרקע שמחוץ לחלונית סוגרת אותה */
+            d.addEventListener('click', function (e) { if (e.target === d) hide(d); });
+            Array.prototype.forEach.call(d.querySelectorAll('[data-close]'), function (b) {
+                b.addEventListener('click', function () { hide(d); });
+            });
+        });
+
+        Array.prototype.forEach.call(document.querySelectorAll('a.card[href^="#"]'), function (card) {
+            card.addEventListener('click', function () { pushed = true; opener = card; });
+        });
+
+        window.addEventListener('hashchange', sync);
+        sync();
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         initFilters();
         initTabs();
         initCopy();
+        initDialogs();
     });
 })();
