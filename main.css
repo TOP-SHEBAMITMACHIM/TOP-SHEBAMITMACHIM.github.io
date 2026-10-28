@@ -143,6 +143,9 @@ kbd { border-bottom-width: 2px; }
 }
 .main-nav a:hover, .main-nav a[aria-current="page"] { background: var(--accent-soft); color: var(--accent); }
 .main-nav i { margin-inline-end: 4px; }
+.main-nav a { display: inline-flex; align-items: center; }
+/* אייקון מתמחים טופ — על רקע כהה קבוע כדי שייראה גם במצב בהיר */
+.nav-mit img { width: 22px; height: 22px; padding: 2px; border-radius: 6px; background: #1b2540; margin-inline-end: 6px; }
 
 /* כפתור מצב בהיר/כהה בתוך הכותרת (site.js מכניס אותו ל-[data-theme-slot]) */
 .theme-toggle.in-header {
@@ -406,9 +409,9 @@ pre.code {
 
 /* ---------- 7. כותרת תחתונה ---------- */
 .site-footer { margin-top: auto; border-top: 1px solid var(--border); background: color-mix(in srgb, var(--bg-2) 85%, transparent); }
-.site-footer .container { padding-top: 30px; padding-bottom: 30px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
-.quote { font-family: 'Cascadia Code', Consolas, monospace; color: var(--gold); font-size: 0.98rem; margin: 0; direction: rtl; }
-.footer-links { display: flex; flex-wrap: wrap; gap: 16px; font-size: 0.93rem; }
+.site-footer .container { padding-top: 30px; padding-bottom: 30px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
+.quote { font-family: 'Cascadia Code', Consolas, monospace; color: var(--gold); font-size: 1.05rem; margin: 0; direction: rtl; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; font-size: 0.93rem; }
 .footer-links a { color: var(--text-2); }
 .footer-links a:hover { color: var(--accent); }
 
@@ -427,7 +430,7 @@ pre.code {
     .p-cover { order: -1; }
     .main-nav .nav-text { display: none; }
     .main-nav a { padding: 8px 10px; }
-    .main-nav i { margin: 0; font-size: 1.05rem; }
+    .main-nav i, .nav-mit img { margin: 0; font-size: 1.05rem; }
 }
 
 @media (max-width: 600px) {
