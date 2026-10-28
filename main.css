@@ -134,7 +134,7 @@ kbd { border-bottom-width: 2px; }
 
 .brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-weight: 800; font-size: 1.08rem; }
 .brand:hover { color: var(--text); }
-.brand img { width: 36px; height: 36px; border-radius: 10px; }
+.brand img { width: 36px; height: 36px; }
 
 .main-nav { display: flex; align-items: center; gap: 4px; margin-inline-start: auto; }
 .main-nav a {
@@ -197,9 +197,10 @@ kbd { border-bottom-width: 2px; }
 
 /* ---------- 5. דף הבית ---------- */
 .hero { padding: 64px 0 28px; text-align: center; }
+/* הלוגו שקוף — בלי מסגרת, רק צל עדין בצבעי המנעול */
 .hero-logo {
-    width: 112px; height: 112px; margin: 0 auto 22px; border-radius: 28px;
-    box-shadow: var(--shadow); border: 1px solid var(--border);
+    width: 128px; height: 128px; margin: 0 auto 18px;
+    filter: drop-shadow(0 10px 24px rgba(124, 58, 237, 0.28));
 }
 .hero h1 { font-size: clamp(2rem, 5vw, 3.1rem); letter-spacing: -0.5px; }
 .hero h1 .accent { color: var(--gold); }
@@ -484,7 +485,7 @@ pre.code {
     body { font-size: 16px; }
     .container { padding: 0 16px; }
     .hero { padding-top: 40px; }
-    .hero-logo { width: 88px; height: 88px; }
+    .hero-logo { width: 100px; height: 100px; }
     .brand span { display: none; }
     .steps > li { padding-right: 46px; }
     .search { max-width: none; }
