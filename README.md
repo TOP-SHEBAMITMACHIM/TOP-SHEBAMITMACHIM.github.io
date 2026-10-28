@@ -1,6 +1,6 @@
 # BLOG – טופ שבמתמחים
 
-האתר: https://top-shebamitmachim.github.io/BLOG/
+האתר: https://top-shebamitmachim.github.io/
 
 תוכנות, תוספים לכרום וסקריפטים חינמיים בקוד פתוח – עם מדריכי התקנה בעברית.
 
