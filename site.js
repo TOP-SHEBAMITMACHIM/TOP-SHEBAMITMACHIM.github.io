@@ -2,7 +2,7 @@
    טופ שבמתמחים — מצב בהיר / מצב כהה
    --------------------------------------------------------------------------
    ברירת המחדל נקבעת לפי הגדרת מערכת ההפעלה של הגולש (בהיר או כהה).
-   ברגע שהגולש לוחץ על הכפתור הצף, הבחירה שלו נשמרת ב-localStorage ומכאן היא
+   ברגע שהגולש לוחץ על כפתור המצב, הבחירה שלו נשמרת ב-localStorage ומכאן היא
    זו שקובעת בכל טעינה — עד שהוא יחליף שוב.
 
    רוצים שכולם תמיד ייפתחו במצב כהה, בלי קשר להגדרות המערכת? החליפו את השורה
@@ -62,7 +62,10 @@
         button.type = 'button';
         button.id = 'themeToggle';
         button.className = 'theme-toggle';
-        document.body.appendChild(button);
+        /* אם בדף יש מקום שמור לכפתור (בכותרת העליונה) — הוא נכנס לשם, אחרת הוא צף בפינה */
+        var slot = document.querySelector('[data-theme-slot]');
+        if (slot) button.className += ' in-header';
+        (slot || document.body).appendChild(button);
         applyTheme(root.getAttribute('data-theme') || systemTheme());
 
         button.addEventListener('click', function () {

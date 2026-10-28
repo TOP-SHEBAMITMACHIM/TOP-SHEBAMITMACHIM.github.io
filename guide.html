@@ -3,75 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מדריך והתקנת סקריפט לעיצוב צ'אט</title>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style-2.css">
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800&display=swap" rel="stylesheet">
-
+    <title>מעצב הודעות צ&#x27;אט לפורומי NodeBB | טופ שבמתמחים</title>
+    <meta name="description" content="שורת כפתורי עיצוב לצ&#x27;אט הפרטי בפורומים – כולל כפתור עיצוב אוטומטי באמצעות AI.">
+    <meta name="google-site-verification" content="Ga1FgkoEm32LMI-gkrCiymTww9PIpCvD4p6AJA16cXM" />
+    <meta property="og:title" content="מעצב הודעות צ&#x27;אט לפורומי NodeBB | טופ שבמתמחים">
+    <meta property="og:description" content="שורת כפתורי עיצוב לצ&#x27;אט הפרטי בפורומים – כולל כפתור עיצוב אוטומטי באמצעות AI.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://top-shebamitmachim.github.io/BLOG/guide.html">
+    <meta property="og:image" content="https://top-shebamitmachim.github.io/BLOG/img/logo.webp">
+    <meta name="theme-color" content="#0b0d14">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- מצב בהיר/כהה + חלונית "צור עמנו קשר" -->
     <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="main.css">
     <script src="site.js"></script>
     <script src="contact-widget.js"></script>
+    <script src="ui.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">דלג לתוכן</a>
+    <div class="bg-glow" aria-hidden="true"></div>
 
-    <div class="background-container">
-        <div class="glow-1"></div>
-        <div class="glow-2"></div>
-        <div class="code-symbols">
-            <div class="symbol">{}</div>
-            <div class="symbol">[]</div>
-            <div class="symbol">&lt;/&gt;</div>
-            <div class="symbol">;</div>
-            <div class="symbol">=&gt;</div>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="index.html"><img src="img/logo.webp" alt="" width="36" height="36"><span>טופ שבמתמחים</span></a>
+            <nav class="main-nav" aria-label="ניווט ראשי">
+                <a href="index.html#projects"><i class="fa-solid fa-layer-group"></i><span class="nav-text">פרויקטים</span></a>
+                <a href="index.html#about"><i class="fa-solid fa-circle-info"></i><span class="nav-text">אודות</span></a>
+                <a href="https://mitmachim.top/user/%D7%98%D7%95%D7%A4-%D7%A9%D7%91%D7%9E%D7%AA%D7%9E%D7%97%D7%99%D7%9D" target="_blank" rel="noopener"><i class="fa-solid fa-user"></i><span class="nav-text">מתמחים טופ</span></a>
+                <a href="https://github.com/TOP-SHEBAMITMACHIM" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i><span class="nav-text">GitHub</span></a>
+            </nav>
+            <div data-theme-slot></div>
         </div>
-    </div>
+    </header>
 
-    <div class="content-wrapper">
-        
-        <h1>מדריך והתקנת תוסף לעיצוב צ'אט פרטי בפורום נודביבי</h1>
-        <hr>
-        
-        <h2>הסבר קצר על התוסף:</h2>
-        <p>מי שמשתמש הרבה בצ'אט הפרטי בטח מכיר את זה שאין שם כפתורי עיצוב כמו בעריכת פוסט רגיל, וצריך לכתוב את סימוני ה-Markdown באופן ידני.</p>
-        <p>הכנתי סקריפט ל-Tampermonkey שמוסיף שורת כפתורים שימושית ממש מעל תיבת ההקלדה של הצ'אט.</p>
+    <main id="main" class="container">
+        <nav class="crumbs" aria-label="פירורי לחם"><a href="index.html#projects">← כל הפרויקטים</a></nav>
+        <section class="p-hero">
+            <div class="p-hero-main">
+                <div class="p-title"><span class="p-icon" style="--c1:#1a56db;--c2:#0b1f4d" aria-hidden="true"><img src="img/nodebb-ext.png" alt=""></span><h1>מעצב הודעות צ&#x27;אט לפורומי NodeBB</h1></div>
+                <p class="p-tagline">שורת כפתורי עיצוב לצ&#x27;אט הפרטי בפורומים – כולל כפתור עיצוב אוטומטי באמצעות AI.</p>
+                <div class="p-badges"><span class="badge gold">סקריפטים</span><span class="badge">תוספים לכרום</span><span class="badge muted">גרסה 2.6</span><span class="badge muted">Tampermonkey / Chrome</span></div>
+                <div class="p-actions"><a class="btn btn-primary" href="#install"><i class="fa-solid fa-download"></i> איך מתקינים</a><a class="btn btn-ghost" href="https://github.com/TOP-SHEBAMITMACHIM/-NodeBB-Chat-Formatter---Pro-AI-Tampermonkey" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a></div>
+            </div>
+            <div class="p-cover"><img src="img/cover-chat-formatter.webp" alt="" fetchpriority="high"></div>
+        </section>
+        <div class="p-layout">
+            <div><section class="panel" id="about"><h2><i class="fa-solid fa-circle-info"></i> מה זה?</h2><p>מי שמשתמש הרבה בצ'אט הפרטי בטח מכיר את זה שאין שם כפתורי עיצוב כמו בעריכת פוסט רגיל, וצריך לכתוב את סימוני ה-Markdown באופן ידני.</p><p>הסקריפט מוסיף שורת כפתורים שימושית ממש מעל תיבת ההקלדה של הצ'אט. בגרסה החדשה יש גם כפתור שמעצב את ההודעה אוטומטית בעזרת AI (Gemini).</p></section><section class="panel" id="features"><h2><i class="fa-solid fa-star"></i> מה יש בו</h2><ul class="features"><li>כפתורי עיצוב: מודגש, נטוי, קו חוצה, מרכוז ורשימה</li><li>בלוק קוד וספוילר – מותאמים לתחביר של הפורום</li><li>כפתורי קישור ותמונה</li><li><b>כפתור ציטוט צף</b> – מסמנים טקסט בצ'אט והוא נכנס כציטוט לתיבת ההודעה</li><li><b>עיצוב אוטומטי ב-AI</b> (בגרסת Tampermonkey)</li><li>עובד במתמחים טופ, בני ברק, אוצריא ועוד</li></ul></section><section class="panel" id="install"><h2><i class="fa-solid fa-download"></i> איך מתקינים</h2><div class="tabs" role="tablist" aria-label="שיטת התקנה"><button type="button" class="tab" role="tab" id="tab-0" aria-controls="method-0" aria-selected="true" tabindex="0">סקריפט (מומלץ, כולל AI)</button><button type="button" class="tab" role="tab" id="tab-1" aria-controls="method-1" aria-selected="false" tabindex="-1">תוסף לכרום</button><button type="button" class="tab" role="tab" id="tab-2" aria-controls="method-2" aria-selected="false" tabindex="-1">Greasy Fork</button></div><div class="tab-panel" id="method-0" role="tabpanel" aria-labelledby="tab-0"><p class="tab-intro">הגרסה המלאה ביותר, מתעדכנת אוטומטית.</p><ol class="steps"><li><h3>מתקינים את Tampermonkey</h3><p>זה התוסף שמריץ סקריפטים בדפדפן. אם הוא כבר מותקן אצלכם – דלגו לשלב הבא.</p><a class="btn btn-ghost btn-sm" href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo" target="_blank" rel="noopener"><i class="fa-solid fa-puzzle-piece"></i> Tampermonkey בחנות כרום</a><img src="guide-pic.png" alt="כפתור הוספה לכרום בחנות התוספים" loading="lazy"></li><li><h3>מתקינים את הסקריפט</h3><p>לוחצים על הכפתור ומאשרים התקנה בלשונית של Tampermonkey.</p><a class="btn btn-primary btn-sm" href="https://raw.githubusercontent.com/TOP-SHEBAMITMACHIM/-NodeBB-Chat-Formatter---Pro-AI-Tampermonkey/main/NODBIBI.user.js" target="_blank" rel="noopener"><i class="fa-solid fa-bolt"></i> התקנת הסקריפט</a></li><li><h3>(לא חובה) מפעילים את כפתור ה-AI</h3><p>מוציאים מפתח API חינמי של Gemini ב-<a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>, ואז לוחצים על אייקון Tampermonkey ← <b>🔑 עדכן מפתח API של Gemini</b> ומדביקים אותו.</p></li></ol></div><div class="tab-panel" id="method-1" role="tabpanel" aria-labelledby="tab-1" hidden><p class="tab-intro">גרסה בסיסית בלי AI, למי שלא רוצה Tampermonkey.</p><ol class="steps"><li><h3>מורידים ומחלצים</h3><p>מורידים את הקובץ, לוחצים עליו בקליק ימני ← <b>חלץ הכל</b>, ושומרים את התיקייה במקום קבוע במחשב.</p><a class="btn btn-primary btn-sm" href="https://github.com/TOP-SHEBAMITMACHIM/-NodeBB-Chat-Formatter---Pro/releases/download/V1.1/nodebb-formatter-extension.zip"><i class="fa-solid fa-download"></i> הורדת התוסף</a></li><li><h3>מפעילים "מצב מפתח" בדף התוספים</h3><p>מעתיקים לשורת הכתובת <span class="copy-row"><code>chrome://extensions</code><button type="button" class="copy-btn" data-copy="chrome://extensions">העתק</button></span> ומדליקים בפינה את המתג <b>מצב פיתוח</b> (Developer mode).</p><img src="pic3.png" alt="מתג מצב פיתוח בדף התוספים של כרום" loading="lazy"></li><li><h3>טוענים את התיקייה</h3><p>לוחצים על <b>טעינת פריט לא ארוז</b> (Load unpacked) ובוחרים את התיקייה שחילצתם – זו שיש בתוכה ישירות את הקובץ <code>manifest.json</code>.</p><div class="note warn"><i class="fa-solid fa-triangle-exclamation"></i><div>אל תמחקו את התיקייה אחרי ההתקנה – כרום טוען את התוסף ממנה.</div></div><img src="pic4.png" alt="בחירת תיקיית התוסף" loading="lazy"></li></ol></div><div class="tab-panel" id="method-2" role="tabpanel" aria-labelledby="tab-2" hidden><p class="tab-intro">אותו סקריפט מאתר Greasy Fork (גרסה ללא AI).</p><ol class="steps"><li><h3>מתקינים את Tampermonkey</h3><p>זה התוסף שמריץ סקריפטים בדפדפן. אם הוא כבר מותקן אצלכם – דלגו לשלב הבא.</p><a class="btn btn-ghost btn-sm" href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo" target="_blank" rel="noopener"><i class="fa-solid fa-puzzle-piece"></i> Tampermonkey בחנות כרום</a><img src="guide-pic.png" alt="כפתור הוספה לכרום בחנות התוספים" loading="lazy"></li><li><h3>מתקינים מ-Greasy Fork</h3><a class="btn btn-primary btn-sm" href="https://update.greasyfork.org/scripts/579494/NodeBB%20Chat%20Formatter%20-%20Pro%20%28V23%20-%20Multi%20Site%29.user.js" target="_blank" rel="noopener"><i class="fa-solid fa-bolt"></i> התקנה מ-Greasy Fork</a></li></ol></div><div class="note"><i class="fa-solid fa-lightbulb"></i><div>מפתח ה-API נשמר רק אצלכם, בתוך Tampermonkey.</div></div></section><section class="panel" id="shots"><h2><i class="fa-solid fa-image"></i> תמונות</h2><div class="shots"><figure style="margin:0"><img src="guide-pic-2.png" alt="סרגל הכפתורים בתוך הצ&#x27;אט" loading="lazy"><figcaption style="color:var(--text-3);font-size:.9rem;margin-top:6px">סרגל הכפתורים בתוך הצ&#x27;אט</figcaption></figure></div></section>
+                <section class="panel" id="more"><h2><i class="fa-solid fa-layer-group"></i> עוד פרויקטים</h2><div class="more-grid"><a class="mini" href="MIT.html"><span class="p-icon" style="--c1:#0e7490;--c2:#082f49" aria-hidden="true">💬</span><span><b>תגובה מהירה</b><small>סקריפטים</small></span></a><a class="mini" href="emogi.html"><span class="p-icon" style="--c1:#f59e0b;--c2:#78350f" aria-hidden="true">😂</span><span><b>מחליף אימוג&#x27;י</b><small>סקריפטים</small></span></a><a class="mini" href="link-to-new-guide.html"><span class="p-icon" style="--c1:#db2777;--c2:#500724" aria-hidden="true">🔗</span><span><b>מנקה כוכביות</b><small>תוספים לכרום</small></span></a><a class="mini" href="convertop.html"><span class="p-icon" style="--c1:#0ea5e9;--c2:#0c4a6e" aria-hidden="true">🔄</span><span><b>CONVERTOP</b><small>תוכנות לווינדוס</small></span></a></div></section>
+            </div>
+            <aside class="aside">
+                <div class="panel"><h2>פרטים</h2><ul class="facts"><li><span>גרסה</span><b>2.6</b></li><li><span>פלטפורמה</span><b>Tampermonkey / Chrome</b></li><li><span>סוג</span><b>סקריפטים / תוספים לכרום</b></li><li><span>מחיר</span><b>חינם</b></li></ul>
+                    <h2 style='margin-top:16px'>דרישות</h2><ul class='features' style='grid-template-columns:1fr'><li>Tampermonkey, או Chrome / Edge</li></ul>
+                </div>
+                <div class="panel" style="display:flex;flex-direction:column;gap:10px"><a class="btn btn-primary" href="https://raw.githubusercontent.com/TOP-SHEBAMITMACHIM/-NodeBB-Chat-Formatter---Pro-AI-Tampermonkey/main/NODBIBI.user.js"><i class="fa-solid fa-download"></i> התקנת הסקריפט</a><a class="btn btn-ghost" href="https://github.com/TOP-SHEBAMITMACHIM/-NodeBB-Chat-Formatter---Pro-AI-Tampermonkey" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> קוד המקור</a></div>
+                <div class="panel toc-panel"><h2>בדף הזה</h2><ul class="toc"><li><a href="#about">מה זה?</a></li><li><a href="#features">מה יש בו</a></li><li><a href="#install">איך מתקינים</a></li><li><a href="#shots">תמונות</a></li></ul></div>
+            </aside>
+        </div>
+    </main>
 
-        <h3>מה הסקריפט כולל:</h3>
-        <ul>
-            <li>כפתורי עיצוב בסיסיים (מודגש, נטוי, קו חוצה, מרכוז, רשימה).</li>
-            <li>כפתורים להכנסת בלוק קוד וספוילר (מותאמים לתחביר הספציפי של הפורום).</li>
-            <li>כפתורי קישור ותמונה.</li>
-            <li>כפתור ציטוט צף (נבנה בעזרת קלוד): כשמסמנים טקסט כלשהו בתוך הצ'אט, יקפוץ לידו כפתור "ציטוט" קטן שיכניס את הטקסט המסומן ישירות לתיבת ההודעה שלכם.</li>
-        </ul>
-
-        <hr>
-
-        <h2>מדריך להתקנה:</h2>
-        <ul>
-            <li>
-                <h3>1) הכנסו <a href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo" target="_blank" class="back-link">לכאן</a> והתקינו את התוסף של Tampermonkey:</h3>
-                <img src="guide-pic.png" alt="לחץ על הוספה לכרום" class="guide-image">
-            </li>
-            <li>
-                <h3>2) לאחר מכן תיכנסו <a href="https://update.greasyfork.org/scripts/579494/NodeBB%20Chat%20Formatter%20-%20Pro%20%28V23%20-%20Multi%20Site%29.user.js" style="font-weight: bold;" target="_blank" class="back-link">לכאן</a> והתקינו את הסקריפט.</h3>
-            </li>
-        </ul>
-        
-        <h1>בהצלחה!!!</h1>
-        <hr>
-
-        <h2>תמונות:</h2>
-        <img src="guide-pic-2.png" alt="תמונות מהתוסף" class="guide-image">
-        
-        <hr>
-        <a href="index.html" class="back-link">← חזרה לדף הראשי</a>
-
-    </div>
-
-    <footer> 
-        <h1>נהינתם?</h1> 
-        <h1>תספרו לחברים!!!</h1>
+    <footer class="site-footer">
+        <div class="container">
+            <p class="quote">&lt;ידע הוא הכוח היחיד שגדל כשחולקים אותו /&gt;</p>
+            <div class="footer-links">
+                <a href="index.html#projects">כל הפרויקטים</a>
+                <a href="https://mitmachim.top/user/%D7%98%D7%95%D7%A4-%D7%A9%D7%91%D7%9E%D7%AA%D7%9E%D7%97%D7%99%D7%9D" target="_blank" rel="noopener">הפרופיל במתמחים טופ</a>
+                <a href="https://github.com/TOP-SHEBAMITMACHIM" target="_blank" rel="noopener">GitHub</a>
+            </div>
+        </div>
     </footer>
-    
 </body>
 </html>

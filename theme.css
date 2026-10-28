@@ -1,12 +1,11 @@
 /* ==========================================================================
    טופ שבמתמחים — תוספות עיצוב (מצב בהיר/כהה + חלונית "צור עמנו קשר")
    --------------------------------------------------------------------------
-   הקובץ הזה נטען אחרי style.css / style-2.css ואינו משנה אותם כלל.
+   הקובץ הזה נטען לפני main.css.
    הוא אחראי על שלושה דברים בלבד:
 
-     1. מצב בהיר — כל הכללים של המצב הבהיר מוגדרים תחת [data-theme="light"],
-        כך שבמצב כהה (ברירת המחדל) שום דבר באתר לא משתנה.
-     2. כפתור החלפה בין המצבים, בפינה הימנית התחתונה.
+     1. משתני הצבע של החלונית במצב כהה ובמצב בהיר (צבעי האתר עצמו — ב-main.css).
+     2. כפתור החלפה בין המצבים (בכותרת העליונה, או צף בפינה בדפים בלי כותרת).
      3. עיצוב חלונית "צור עמנו קשר" (נבנית ע"י contact-widget.js).
 
    את המצב בפועל מחיל site.js — הוא שם data-theme על תגית <html>.
@@ -323,130 +322,6 @@ textarea.form-control {
     border: 1px solid #ef4444;
     color: #ef4444;
     display: block;
-}
-
-/* ---------- 5. מצב בהיר: התאמת צבעי האתר הקיים ----------
-   כל הכללים בסעיף הזה חלים אך ורק במצב בהיר. במצב כהה שום דבר לא משתנה. */
-
-[data-theme="light"] body {
-    background-color: #f4f6fb;
-    color: #1c2130;
-}
-
-[data-theme="light"] .background-container {
-    background: linear-gradient(135deg, #ffffff 0%, #eef1f8 100%);
-}
-
-[data-theme="light"] .glow-1 {
-    background: radial-gradient(circle, rgba(37, 99, 235, 0.14) 0%, rgba(37, 99, 235, 0.04) 40%, transparent 70%);
-}
-
-[data-theme="light"] .glow-2 {
-    background: radial-gradient(circle, rgba(217, 119, 6, 0.1) 0%, rgba(217, 119, 6, 0.03) 35%, transparent 65%);
-}
-
-[data-theme="light"] .symbol {
-    opacity: 0.06;
-    color: #2563eb;
-}
-
-[data-theme="light"] h1,
-[data-theme="light"] h2,
-[data-theme="light"] h3 {
-    color: #101725;
-    text-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
-}
-
-[data-theme="light"] p {
-    color: #5b6478;
-}
-
-[data-theme="light"] hr {
-    background-color: #b07d14;
-}
-
-[data-theme="light"] abbr {
-    text-decoration-color: #2563eb;
-    color: #1c2130;
-}
-
-[data-theme="light"] .profile-link,
-[data-theme="light"] .back-link {
-    color: #2563eb;
-}
-
-[data-theme="light"] .profile-link:hover,
-[data-theme="light"] .back-link:hover {
-    color: #b07d14;
-}
-
-[data-theme="light"] ul {
-    background-color: rgba(255, 255, 255, 0.88);
-    border-color: #dbe1ec;
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-}
-
-[data-theme="light"] li {
-    color: #1c2130;
-}
-
-/* רכיב code עם עיצוב מוטבע בתוך עמוד — נדרש !important כדי לעקוף אותו */
-[data-theme="light"] code {
-    background: #e6ebf5 !important;
-    color: #1d4ed8 !important;
-}
-
-[data-theme="light"] .download-btn {
-    color: #2563eb;
-    border-color: #2563eb;
-}
-
-[data-theme="light"] .download-btn:hover {
-    background-color: #2563eb;
-    color: #ffffff;
-}
-
-[data-theme="light"] .guide-image {
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.16);
-    border-color: #dbe1ec;
-}
-
-[data-theme="light"] footer {
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #1c2130;
-    border-top-color: #b07d14;
-}
-
-[data-theme="light"] footer h1 {
-    color: #1c2130;
-}
-
-[data-theme="light"] .pro-card {
-    background-color: rgba(255, 255, 255, 0.88);
-    border-color: #dbe1ec;
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-}
-
-[data-theme="light"] .pro-card:hover {
-    box-shadow: 0 14px 28px rgba(37, 99, 235, 0.22);
-    border-color: #2563eb;
-}
-
-[data-theme="light"] .pro-card-img {
-    border-bottom-color: #dbe1ec;
-}
-
-[data-theme="light"] .pro-card-title {
-    color: #101725;
-}
-
-[data-theme="light"] .pro-card-desc,
-[data-theme="light"] .card-icon-text {
-    color: #5b6478;
-}
-
-[data-theme="light"] .pro-card-footer {
-    border-top-color: #dbe1ec;
 }
 
 /* ---------- 6. מסכים קטנים ---------- */
