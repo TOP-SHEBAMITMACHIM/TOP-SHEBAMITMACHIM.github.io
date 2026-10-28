@@ -20,18 +20,6 @@
         var empty = document.getElementById('emptyState');
         var active = 'all';
 
-        /* מונה פרויקטים לכל קטגוריה */
-        chips.forEach(function (chip) {
-            var f = chip.getAttribute('data-filter');
-            var n = f === 'all' ? cards.length : cards.filter(function (c) {
-                return (c.getAttribute('data-cat') || '').split(' ').indexOf(f) !== -1;
-            }).length;
-            var span = document.createElement('span');
-            span.className = 'count';
-            span.textContent = '(' + n + ')';
-            chip.appendChild(span);
-        });
-
         function normalize(s) {
             return (s || '').toLowerCase()
                 .replace(/[֑-ׇ]/g, '')          /* ניקוד וטעמים */

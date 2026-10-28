@@ -20,10 +20,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- מצב בהיר/כהה + חלונית "צור עמנו קשר" -->
     <link rel="stylesheet" href="theme.css?v=a93274a5">
-    <link rel="stylesheet" href="main.css?v=899b8c2d">
+    <link rel="stylesheet" href="main.css?v=9f3cb5b1">
     <script src="site.js?v=7d1cc1b5"></script>
     <script src="contact-widget.js?v=97be6ec1"></script>
-    <script src="ui.js?v=34380858" defer></script>
+    <script src="ui.js?v=660ea80b" defer></script>
 </head>
 <body id="top">
     <a class="skip-link" href="#main">דלג לתוכן</a>
@@ -33,10 +33,8 @@
         <div class="container">
             <a class="brand" href="#top"><img src="img/logo.webp?v=2c0c3ad5" alt="" width="36" height="36"><span>טופ שבמתמחים</span></a>
             <nav class="main-nav" aria-label="ניווט ראשי">
-                <a href="#projects" aria-current="page"><i class="fa-solid fa-layer-group"></i><span class="nav-text">פרויקטים</span></a>
-                <a href="#about"><i class="fa-solid fa-circle-info"></i><span class="nav-text">אודות</span></a>
                 <a class="nav-mit" href="https://mitmachim.top/user/%D7%98%D7%95%D7%A4-%D7%A9%D7%91%D7%9E%D7%AA%D7%9E%D7%97%D7%99%D7%9D" target="_blank" rel="noopener" title="הפרופיל שלי במתמחים טופ" aria-label="הפרופיל שלי במתמחים טופ"><img src="img/mitmachim.png?v=89f8990d" alt="" width="26" height="26"></a>
-                <a href="https://github.com/TOP-SHEBAMITMACHIM" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i><span class="nav-text">GitHub</span></a>
+                <a href="https://github.com/TOP-SHEBAMITMACHIM" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
                 <button type="button" class="nav-share" data-share title="שיתוף האתר עם חברים" aria-label="שיתוף האתר עם חברים"><i class="fa-solid fa-share-nodes"></i><span class="nav-text">שיתוף</span></button>
             </nav>
             <div data-theme-slot></div>
@@ -47,32 +45,23 @@
         <section class="hero container">
             <img class="hero-logo" src="img/logo.webp?v=2c0c3ad5" alt="לוגו טופ שבמתמחים" width="128" height="128">
             <h1>ברוכים הבאים ל<span class="accent">טופ שבמתמחים</span></h1>
-            <p class="hero-lead">תוכנות, תוספים לכרום וסקריפטים שבניתי – חינמיים לגמרי ובקוד פתוח. בוחרים כלי, ונפתח מדריך התקנה צעד אחר צעד עם כפתור הורדה.</p>
+            <p class="hero-lead">תוכנות, תוספים וסקריפטים חינמיים בקוד פתוח – עם מדריך התקנה פשוט לכל אחד.</p>
             <div class="hero-actions">
-                <a class="btn btn-primary" href="#projects"><i class="fa-solid fa-layer-group"></i> לכל הפרויקטים</a>
+                <a class="btn btn-primary" href="#projects">לכל הפרויקטים</a>
                 <button type="button" class="btn btn-ghost" data-share><i class="fa-solid fa-share-nodes"></i> שתפו חברים</button>
-                <a class="btn btn-ghost" href="https://mitmachim.top/user/%D7%98%D7%95%D7%A4-%D7%A9%D7%91%D7%9E%D7%AA%D7%9E%D7%97%D7%99%D7%9D" target="_blank" rel="noopener"><img class="btn-mit" src="img/mitmachim.png?v=89f8990d" alt="" width="22" height="22"> הפרופיל שלי במתמחים טופ</a>
-                <a class="btn btn-ghost" href="https://github.com/TOP-SHEBAMITMACHIM" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
             </div>
-            <div class="stats">
-                <div class="stat"><b>7</b><span>פרויקטים</span></div>
-                <div class="stat"><b>100%</b><span>חינם</span></div>
-                <div class="stat"><b>קוד פתוח</b><span>בגיטהאב</span></div>
-                <div class="stat"><b>עברית</b><span>ממשק ומדריכים</span></div>
+            <div class="hero-links">
+                <a href="https://mitmachim.top/user/%D7%98%D7%95%D7%A4-%D7%A9%D7%91%D7%9E%D7%AA%D7%9E%D7%97%D7%99%D7%9D" target="_blank" rel="noopener" title="הפרופיל שלי במתמחים טופ" aria-label="הפרופיל שלי במתמחים טופ"><img class="btn-mit" src="img/mitmachim.png?v=89f8990d" alt="" width="22" height="22"></a>
+                <a href="https://github.com/TOP-SHEBAMITMACHIM" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
             </div>
         </section>
 
         <section class="section container" id="projects">
-            <div class="section-head">
-                <div>
-                    <h2>הפרויקטים שלי</h2>
-                    <p>לחצו על פרויקט כדי לפתוח את המדריך וההורדה.</p>
-                </div>
-            </div>
+            <div class="section-head"><h2>הפרויקטים שלי</h2></div>
             <div class="toolbar">
                 <label class="search">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="search" id="projectSearch" placeholder="חיפוש פרויקט…  (מקש /)" aria-label="חיפוש פרויקט" autocomplete="off">
+                    <input type="search" id="projectSearch" placeholder="חיפוש…" aria-label="חיפוש פרויקט" autocomplete="off">
                 </label>
                 <div class="chips" role="group" aria-label="סינון לפי סוג"><button type="button" class="chip" data-filter="all" aria-pressed="true">הכל</button><button type="button" class="chip" data-filter="ext" aria-pressed="false">תוספים לכרום</button><button type="button" class="chip" data-filter="script" aria-pressed="false">סקריפטים</button><button type="button" class="chip" data-filter="win" aria-pressed="false">תוכנות לווינדוס</button><button type="button" class="chip" data-filter="android" aria-pressed="false">אנדרואיד</button></div>
             </div>
@@ -80,84 +69,56 @@
                 <a class="card" href="#top-gif" data-cat="ext" data-keywords="gif גיף גיפים מדבקות ג&#x27;ימייל צאט" aria-haspopup="dialog">
                     <div class="cover cover--icon" style="--c1:#7c3aed;--c2:#1e1b4b"><img src="img/top-gif.png" alt="" loading="lazy"></div>
                     <div class="card-body">
-                        <div class="card-tags"><span class="badge">תוספים לכרום</span></div>
                         <h3>Top Gif</h3>
                         <p>תוסף לכרום שפותח גלריית גיפים מסודרת לפי קטגוריות, עם חיפוש חכם, מועדפים ואחרונים. לחיצה על גיף מדביקה אותו ישר בהודעה.</p>
-                    </div>
-                    <div class="card-foot">
-                        <span><i class="fa-solid fa-code-branch"></i> 2 · Chrome / Edge</span>
                         <span class="card-cta">מדריך והורדה <i class="fa-solid fa-arrow-left"></i></span>
                     </div>
                 </a>
                 <a class="card" href="#chatsapp" data-cat="ext script" data-keywords="וואטסאפ whatsapp גוגל צאט google chat עיצוב" aria-haspopup="dialog">
                     <div class="cover cover--icon" style="--c1:#25d366;--c2:#075e54"><img src="img/chatsapp.png" alt="" loading="lazy"></div>
                     <div class="card-body">
-                        <div class="card-tags"><span class="badge">תוספים לכרום</span><span class="badge gold">סקריפטים</span></div>
                         <h3>ChatsApp</h3>
                         <p>בועות ירוקות ולבנות, שעה ו-VV בתוך הבועה, ציטוטים, הודעות קוליות ורקע הוואטסאפ – בתוך גוגל צ&#x27;אט וג&#x27;ימייל.</p>
-                    </div>
-                    <div class="card-foot">
-                        <span><i class="fa-solid fa-code-branch"></i> 1.3.0 · Chrome / Tampermonkey</span>
                         <span class="card-cta">מדריך והורדה <i class="fa-solid fa-arrow-left"></i></span>
                     </div>
                 </a>
                 <a class="card" href="#chat-formatter" data-cat="script ext" data-keywords="נודביבי nodebb מתמחים צאט עיצוב markdown ai בינה" aria-haspopup="dialog">
                     <div class="cover"><img src="img/cover-chat-formatter.webp" alt="" loading="lazy"></div>
                     <div class="card-body">
-                        <div class="card-tags"><span class="badge gold">סקריפטים</span><span class="badge">תוספים לכרום</span></div>
                         <h3>מעצב הודעות צ&#x27;אט</h3>
                         <p>מוסיף לצ&#x27;אט הפרטי בפורומי נודביבי כפתורי מודגש, נטוי, קוד, ספוילר, קישור ותמונה, וכפתור ציטוט צף.</p>
-                    </div>
-                    <div class="card-foot">
-                        <span><i class="fa-solid fa-code-branch"></i> 2.6 · Tampermonkey / Chrome</span>
                         <span class="card-cta">מדריך והורדה <i class="fa-solid fa-arrow-left"></i></span>
                     </div>
                 </a>
                 <a class="card" href="#quick-reply" data-cat="script" data-keywords="מתמחים תגובה ציטוט פורום nodebb" aria-haspopup="dialog">
                     <div class="cover"><img src="img/cover-quick-reply.webp" alt="" loading="lazy"></div>
                     <div class="card-body">
-                        <div class="card-tags"><span class="badge gold">סקריפטים</span></div>
                         <h3>תגובה מהירה</h3>
                         <p>תיבת תגובה קבועה בסוף כל אשכול, כפתור &quot;צטט לתגובה&quot; צף, תיוג אוטומטי של כותב ההודעה האחרונה וסרגל עיצוב.</p>
-                    </div>
-                    <div class="card-foot">
-                        <span><i class="fa-solid fa-code-branch"></i> Greasy Fork · Tampermonkey</span>
                         <span class="card-cta">מדריך והורדה <i class="fa-solid fa-arrow-left"></i></span>
                     </div>
                 </a>
                 <a class="card" href="#emoji" data-cat="script" data-keywords="אימוגי emoji גוגל צאט חחח" aria-haspopup="dialog">
                     <div class="cover"><img src="img/cover-emoji.webp" alt="" loading="lazy"></div>
                     <div class="card-body">
-                        <div class="card-tags"><span class="badge gold">סקריפטים</span></div>
                         <h3>מחליף אימוג&#x27;י</h3>
                         <p>סקריפט שמחליף בזמן ההקלדה מילים נפוצות באימוג&#x27;י המתאים, בגוגל צ&#x27;אט ובצ&#x27;אט שבתוך ג&#x27;ימייל.</p>
-                    </div>
-                    <div class="card-foot">
-                        <span><i class="fa-solid fa-code-branch"></i> 1.0 · Tampermonkey</span>
                         <span class="card-cta">מדריך והורדה <i class="fa-solid fa-arrow-left"></i></span>
                     </div>
                 </a>
                 <a class="card" href="#convertop" data-cat="win" data-keywords="המרה convert pdf word וידאו mp3 mp4 תמונות" aria-haspopup="dialog">
                     <div class="cover"><img src="img/cover-convertop.webp" alt="" loading="lazy"></div>
                     <div class="card-body">
-                        <div class="card-tags"><span class="badge">תוכנות לווינדוס</span></div>
                         <h3>CONVERTOP</h3>
                         <p>ממירה בין PDF ל-Word ברמה גבוהה, וגם וידאו, אודיו ותמונות. כולל תור המרות והמרה מקבילה.</p>
-                    </div>
-                    <div class="card-foot">
-                        <span><i class="fa-solid fa-code-branch"></i> 2.0.0 · Windows</span>
                         <span class="card-cta">מדריך והורדה <i class="fa-solid fa-arrow-left"></i></span>
                     </div>
                 </a>
                 <a class="card" href="#adshield" data-cat="android" data-keywords="פרסומות חוסם אנדרואיד android ads dns vpn" aria-haspopup="dialog">
                     <div class="cover cover--icon" style="--c1:#16a34a;--c2:#052e16"><span class="glyph">🛡️</span></div>
                     <div class="card-body">
-                        <div class="card-tags"><span class="badge green">אנדרואיד</span></div>
                         <h3>AdShield</h3>
                         <p>מסנן את כל בקשות ה-DNS במכשיר דרך VPN מקומי, עם לוח בקרה חי, רשימות חסימה ודפדפן נקי מפרסומות.</p>
-                    </div>
-                    <div class="card-foot">
-                        <span><i class="fa-solid fa-code-branch"></i> 1.3.0 · Android 7+</span>
                         <span class="card-cta">מדריך והורדה <i class="fa-solid fa-arrow-left"></i></span>
                     </div>
                 </a>
@@ -166,12 +127,12 @@
         </section>
 
         <section class="section container" id="about">
-            <div class="section-head"><div><h2>איך זה עובד?</h2><p>כמה דברים שכדאי לדעת לפני שמתקינים.</p></div></div>
+            <div class="section-head"><h2>לפני שמתקינים</h2></div>
             <div class="about">
-                <div class="about-item"><i class="fa-solid fa-puzzle-piece"></i><h3>תוספים לכרום</h3><p>מורידים ZIP, מחלצים, ובדף <code>chrome://extensions</code> טוענים את התיקייה במצב מפתח. בכל מדריך יש צילומי מסך.</p></div>
-                <div class="about-item"><i class="fa-solid fa-code"></i><h3>סקריפטים</h3><p>רצים דרך התוסף Tampermonkey. מתקינים אותו פעם אחת, ואז כל סקריפט מותקן בלחיצה ומתעדכן לבד.</p></div>
-                <div class="about-item"><i class="fa-brands fa-windows"></i><h3>תוכנות</h3><p>קבצים לווינדוס. התוכנות לא חתומות דיגיטלית, לכן ווינדוס עשוי להזהיר – לוחצים "מידע נוסף" ← "הפעל בכל זאת".</p></div>
-                <div class="about-item"><i class="fa-solid fa-shield-halved"></i><h3>פרטיות וקוד פתוח</h3><p>הכלים רצים אצלכם במחשב ולא אוספים מידע. כל הקוד פתוח בגיטהאב – מוזמנים לבדוק, להציע ולדווח על באגים.</p></div>
+                <div class="about-item"><i class="fa-solid fa-puzzle-piece"></i><div><h3>תוספים לכרום</h3><p>מחלצים את ה-ZIP וטוענים את התיקייה בדף התוספים, במצב מפתח.</p></div></div>
+                <div class="about-item"><i class="fa-solid fa-code"></i><div><h3>סקריפטים</h3><p>מתקינים פעם אחת את Tampermonkey, ומשם כל סקריפט בלחיצה.</p></div></div>
+                <div class="about-item"><i class="fa-brands fa-windows"></i><div><h3>תוכנות</h3><p>אם ווינדוס מזהיר – "מידע נוסף" ← "הפעל בכל זאת".</p></div></div>
+                <div class="about-item"><i class="fa-solid fa-shield-halved"></i><div><h3>פרטיות</h3><p>הכול רץ אצלכם, בלי איסוף מידע, והקוד פתוח בגיטהאב.</p></div></div>
             </div>
         </section>
     </main>
@@ -316,7 +277,6 @@
         <div class="container">
             <p class="quote">&lt;ידע הוא הכוח היחיד שגדל כשחולקים אותו /&gt;</p>
             <div class="footer-links">
-                <a href="#projects">כל הפרויקטים</a>
                 <a class="footer-mit" href="https://mitmachim.top/user/%D7%98%D7%95%D7%A4-%D7%A9%D7%91%D7%9E%D7%AA%D7%9E%D7%97%D7%99%D7%9D" target="_blank" rel="noopener"><img src="img/mitmachim.png?v=89f8990d" alt="" width="22" height="22">הפרופיל במתמחים טופ</a>
                 <a href="https://github.com/TOP-SHEBAMITMACHIM" target="_blank" rel="noopener">GitHub</a>
                 <button type="button" class="link-btn" data-share><i class="fa-solid fa-share-nodes"></i> שיתוף האתר</button>
