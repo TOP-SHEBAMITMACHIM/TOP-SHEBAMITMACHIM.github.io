@@ -268,6 +268,16 @@ kbd { border-bottom-width: 2px; }
 }
 .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); color: var(--text); }
 .card[hidden] { display: none; }
+/* תגית "עדכון חדש" על הכרטיס */
+.card-badge {
+    position: absolute; top: 10px; right: 10px; z-index: 2;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 10px; border-radius: 999px;
+    font-size: 0.76rem; font-weight: 700; color: #fff;
+    background: linear-gradient(135deg, #16a34a, #0ea5e9);
+    box-shadow: 0 4px 14px rgba(14, 165, 233, 0.35);
+}
+.card-badge i { font-size: 0.7rem; }
 
 .cover { aspect-ratio: 16 / 9; overflow: hidden; background: var(--surface-2); }
 .cover img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
@@ -370,6 +380,8 @@ body.dialog-open { overflow: hidden; }
     background: var(--green-soft); color: var(--green); font-size: 0.72rem; font-weight: 800;
 }
 .features li b { color: var(--text); }
+.whatsnew { grid-template-columns: 1fr; }
+.whatsnew li::before { content: '★'; font-size: 0.7rem; background: var(--gold-soft); color: var(--gold); }
 
 /* לשוניות לשיטות התקנה */
 .tabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 5px; margin-bottom: 18px; background: var(--surface-2); border-radius: 12px; border: 1px solid var(--border); width: fit-content; max-width: 100%; }
