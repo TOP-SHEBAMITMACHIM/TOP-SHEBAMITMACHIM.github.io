@@ -4,6 +4,7 @@
    2. לשוניות של שיטות התקנה בחלוניות הפרויקטים
    3. כפתורי "העתק" ליד פקודות וכתובות
    4. פתיחה וסגירה של חלוניות הפרויקטים לפי הכתובת
+   5. חלונית שיתוף (וואטסאפ, טלגרם, מייל ועוד + העתקת קישור)
    ========================================================================== */
 (function () {
     'use strict';
@@ -203,10 +204,80 @@
         sync();
     }
 
+    /* ---------- 5. שיתוף ----------
+       כל כפתור עם data-share פותח את חלונית השיתוף. בלי data-share-url משתפים את האתר כולו. */
+    var SITE_URL = 'https://top-shebamitmachim.github.io/';
+    var SITE_TEXT = 'טופ שבמתמחים – תוכנות, תוספים וסקריפטים חינמיים עם מדריכי התקנה בעברית';
+
+    function initShare() {
+        var dlg = document.getElementById('shareDialog');
+        if (!dlg) return;
+        var input = document.getElementById('shareUrl');
+        var copyBtn = document.getElementById('shareCopy');
+        var sub = document.getElementById('shareSub');
+        var nativeBtn = dlg.querySelector('[data-target="native"]');
+        var items = dlg.querySelectorAll('a.share-item');
+        var data = { url: SITE_URL, text: SITE_TEXT };
+
+        function links(url, text) {
+            var u = encodeURIComponent(url), t = encodeURIComponent(text), both = encodeURIComponent(text + '\n' + url);
+            return {
+                whatsapp: 'https://wa.me/?text=' + both,
+                telegram: 'https://t.me/share/url?url=' + u + '&text=' + t,
+                gmail: 'https://mail.google.com/mail/?view=cm&fs=1&su=' + t + '&body=' + both,
+                email: 'mailto:?subject=' + t + '&body=' + both,
+                sms: 'sms:?&body=' + both,
+                facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + u,
+                x: 'https://twitter.com/intent/tweet?url=' + u + '&text=' + t
+            };
+        }
+
+        function open(btn) {
+            var title = btn.getAttribute('data-share-title');
+            data.url = btn.getAttribute('data-share-url') || SITE_URL;
+            data.text = title ? title + ' – מדריך התקנה והורדה' : SITE_TEXT;
+            sub.textContent = title ? 'שליחת קישור ישיר ל' + title : 'שליחת קישור לאתר לחברים';
+            var map = links(data.url, data.text);
+            Array.prototype.forEach.call(items, function (a) { a.href = map[a.getAttribute('data-target')]; });
+            input.value = data.url;
+            nativeBtn.hidden = !navigator.share;
+            dlg.showModal();
+        }
+
+        Array.prototype.forEach.call(document.querySelectorAll('[data-share]'), function (btn) {
+            btn.addEventListener('click', function () { open(btn); });
+        });
+        dlg.querySelector('[data-share-close]').addEventListener('click', function () { dlg.close(); });
+        dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+        /* Esc סוגר רק את חלונית השיתוף, לא את חלונית הפרויקט שמתחתיה */
+        dlg.addEventListener('cancel', function (e) { e.preventDefault(); dlg.close(); });
+        input.addEventListener('focus', function () { input.select(); });
+
+        copyBtn.addEventListener('click', function () {
+            var done = function () {
+                var old = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> הועתק!';
+                copyBtn.disabled = true;
+                setTimeout(function () { copyBtn.innerHTML = old; copyBtn.disabled = false; }, 1600);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(data.url).then(done, function () { input.select(); document.execCommand('copy'); done(); });
+            } else {
+                input.select();
+                try { document.execCommand('copy'); done(); } catch (err) { /* אין תמיכה */ }
+            }
+        });
+
+        nativeBtn.addEventListener('click', function () {
+            navigator.share({ title: 'טופ שבמתמחים', text: data.text, url: data.url }).catch(function () {});
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         initFilters();
         initTabs();
         initCopy();
         initDialogs();
+        initShare();
     });
 })();

@@ -144,10 +144,22 @@ kbd { border-bottom-width: 2px; }
 .main-nav a:hover, .main-nav a[aria-current="page"] { background: var(--accent-soft); color: var(--accent); }
 .main-nav i { margin-inline-end: 4px; }
 .main-nav a { display: inline-flex; align-items: center; }
-/* אייקון מתמחים טופ — על רקע כהה קבוע כדי שייראה גם במצב בהיר */
-.nav-mit img, .footer-mit img { width: 22px; height: 22px; padding: 2px; border-radius: 6px; background: #1b2540; }
+/* אייקון מתמחים טופ — בכחול המקורי שלו; במצב בהיר מוכהה כדי שיבלוט על רקע לבן */
+.nav-mit img, .footer-mit img, .btn-mit { width: 26px; height: 26px; object-fit: contain; }
+.footer-mit img, .btn-mit { width: 22px; height: 22px; }
+[data-theme="light"] :is(.nav-mit img, .footer-mit img, .btn-mit) { filter: brightness(0.55) saturate(1.6); }
 .footer-mit { display: inline-flex; align-items: center; gap: 7px; }
-.footer-mit img { width: 20px; height: 20px; }
+
+/* כפתור שיתוף בכותרת — נראה כמו שאר הקישורים בתפריט */
+.nav-share {
+    display: inline-flex; align-items: center; font: inherit; font-weight: 600; font-size: 0.95rem; cursor: pointer;
+    padding: 7px 12px; border-radius: 8px; border: none; background: transparent; color: var(--text-2);
+    transition: background 0.2s, color 0.2s;
+}
+.nav-share:hover { background: var(--accent-soft); color: var(--accent); }
+.nav-share i { margin-inline-end: 4px; }
+.link-btn { font: inherit; cursor: pointer; padding: 0; border: none; background: none; color: var(--text-2); }
+.link-btn:hover { color: var(--accent); }
 
 /* כפתור מצב בהיר/כהה בתוך הכותרת (site.js מכניס אותו ל-[data-theme-slot]) */
 .theme-toggle.in-header {
@@ -409,6 +421,40 @@ pre.code {
 .facts span { color: var(--text-3); flex-shrink: 0; }
 .facts b { color: var(--text); font-weight: 600; text-align: left; }
 
+/* חלונית שיתוף */
+.share-dialog {
+    width: min(460px, calc(100vw - 32px)); padding: 22px 22px 20px; margin: auto;
+    color: var(--text); background: var(--surface-solid);
+    border: 1px solid var(--border-strong); border-radius: 20px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+.share-dialog[open] { animation: dlg-in 0.2s ease-out; }
+.share-dialog::backdrop { background: rgba(5, 8, 15, 0.55); }
+.share-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.share-head h2 { font-size: 1.3rem; }
+.share-sub { margin: 4px 0 18px; font-size: 0.93rem; color: var(--text-3); }
+.share-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px 8px; margin-bottom: 20px; }
+.share-item {
+    display: flex; flex-direction: column; align-items: center; gap: 7px; padding: 6px 2px; border-radius: 12px;
+    font: inherit; font-size: 0.82rem; font-weight: 600; color: var(--text-2); text-align: center;
+    background: none; border: none; cursor: pointer;
+}
+.share-item[hidden] { display: none; }
+.share-item:hover { color: var(--text); background: var(--surface-2); }
+.share-item .si {
+    width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--si); color: #fff; font-size: 1.4rem; transition: transform 0.15s;
+}
+.share-item .si b { font-size: 1.3rem; font-weight: 700; }
+.share-item:hover .si { transform: scale(1.08); }
+.share-copy { display: flex; gap: 8px; }
+.share-copy input {
+    flex: 1; min-width: 0; padding: 8px 12px; font: inherit; font-size: 0.9rem;
+    color: var(--text); background: var(--surface-2); border: 1px solid var(--border-strong); border-radius: 9px;
+}
+.share-copy .btn { flex-shrink: 0; }
+@media (max-width: 400px) { .share-grid { grid-template-columns: repeat(3, 1fr); } }
+
 /* ---------- 7. כותרת תחתונה ---------- */
 .site-footer { margin-top: auto; border-top: 1px solid var(--border); background: color-mix(in srgb, var(--bg-2) 85%, transparent); }
 .site-footer .container { padding-top: 30px; padding-bottom: 30px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
@@ -430,6 +476,8 @@ pre.code {
     .main-nav .nav-text { display: none; }
     .main-nav a { padding: 8px 10px; }
     .main-nav i, .nav-mit img { margin: 0; font-size: 1.05rem; }
+    .nav-share { padding: 8px 10px; }
+    .nav-share i { margin: 0; font-size: 1.05rem; }
 }
 
 @media (max-width: 600px) {
