@@ -486,6 +486,74 @@ pre.code {
 /* הכפתור הצף של "צור קשר" לא יסתיר תוכן בתחתית */
 .site-footer { padding-bottom: 70px; }
 
+/* ---------- 7א. אפקטים (מופעלים ב-ui.js, סעיף 6) ---------- */
+/* רקע נקודות עדין מאחורי ראש הדף, שנעלם לאט כלפי הקצוות */
+.hero { position: relative; isolation: isolate; }
+.hero::before {
+    content: ''; position: absolute; inset: -40px 0 0; z-index: -1; pointer-events: none;
+    background-image: radial-gradient(color-mix(in srgb, var(--text-3) 38%, transparent) 1px, transparent 1.2px);
+    background-size: 22px 22px;
+    -webkit-mask-image: radial-gradient(ellipse 60% 70% at 50% 35%, #000 20%, transparent 75%);
+    mask-image: radial-gradient(ellipse 60% 70% at 50% 35%, #000 20%, transparent 75%);
+    opacity: 0.55;
+}
+
+/* ברק שעובר לאט על "טופ שבמתמחים" בכותרת */
+.hero h1 .accent {
+    background: linear-gradient(100deg, var(--gold) 0%, var(--gold) 40%, #fff3c4 50%, var(--gold) 60%, var(--gold) 100%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: title-shine 6s ease-in-out infinite;
+}
+[data-theme="light"] .hero h1 .accent {
+    background-image: linear-gradient(100deg, var(--gold) 0%, var(--gold) 40%, #f5c451 50%, var(--gold) 60%, var(--gold) 100%);
+}
+@keyframes title-shine {
+    0%, 55% { background-position: 100% 0; }
+    85%, 100% { background-position: 0% 0; }
+}
+
+/* כרטיס: הילה שעוקבת אחרי העכבר */
+.card::after {
+    content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+    background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent) 16%, transparent), transparent 45%);
+    opacity: 0; transition: opacity 0.3s ease;
+}
+.card:hover::after { opacity: 1; }
+.card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* כרטיסים נכנסים בעדינות כשגוללים אליהם (רק אם ה-JS פעל) */
+.reveal-ready .card { opacity: 0; transform: translateY(18px); }
+.reveal-ready .card.is-visible {
+    opacity: 1; transform: none;
+    transition: opacity 0.55s ease, transform 0.55s cubic-bezier(.2, .7, .3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+    transition-delay: var(--delay, 0s), var(--delay, 0s), 0s, 0s;
+}
+.reveal-ready .card.is-visible:hover { transform: translateY(-4px); transition-delay: 0s; }
+
+/* כותרת עליונה: מתעבה מעט אחרי שגוללים, ופס התקדמות דק בתחתיתה */
+.site-header { transition: box-shadow 0.3s ease, background 0.3s ease; }
+.site-header.scrolled { box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12); }
+.scroll-progress {
+    position: absolute; bottom: -1px; right: 0; height: 2px; width: 100%;
+    background: linear-gradient(90deg, #22d3ee, var(--accent), #a855f7);
+    transform-origin: right; transform: scaleX(var(--progress, 0));
+    pointer-events: none;
+}
+
+/* כפתור "חזרה למעלה" — בפינה הימנית, כי בשמאלית יש את כפתור יצירת הקשר */
+.to-top {
+    position: fixed; right: 22px; bottom: 26px; z-index: 9000;
+    width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center;
+    font-size: 1.05rem; cursor: pointer;
+    color: var(--text); background: var(--surface-solid); border: 1px solid var(--border-strong);
+    box-shadow: var(--shadow);
+    opacity: 0; transform: translateY(14px); pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease, color 0.2s, border-color 0.2s;
+}
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { color: var(--accent); border-color: var(--accent); }
+
 /* ---------- 8. מסכים קטנים ---------- */
 @media (max-width: 860px) {
     .d-grid { grid-template-columns: 1fr; }

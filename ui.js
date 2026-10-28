@@ -5,6 +5,7 @@
    3. כפתורי "העתק" ליד פקודות וכתובות
    4. פתיחה וסגירה של חלוניות הפרויקטים לפי הכתובת
    5. חלונית שיתוף (וואטסאפ, טלגרם, מייל ועוד + העתקת קישור)
+   6. אפקטים: הילה בכרטיסים, כניסה בגלילה, פס התקדמות וכפתור "חזרה למעלה"
    ========================================================================== */
 (function () {
     'use strict';
@@ -261,11 +262,75 @@
         });
     }
 
+    /* ---------- 6. אפקטים ---------- */
+    function initEffects() {
+        var reduce = false;
+        try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (err) { /* דפדפן ישן */ }
+
+        /* הילה בכרטיס שעוקבת אחרי העכבר */
+        Array.prototype.forEach.call(document.querySelectorAll('.card'), function (card) {
+            card.addEventListener('pointermove', function (e) {
+                var r = card.getBoundingClientRect();
+                card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+                card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+            });
+        });
+
+        /* כרטיסים נכנסים בעדינות כשגוללים אליהם */
+        var grid = document.getElementById('projectsGrid');
+        if (grid && !reduce && 'IntersectionObserver' in window) {
+            var cards = grid.querySelectorAll('.card');
+            Array.prototype.forEach.call(cards, function (c, i) { c.style.setProperty('--delay', (i % 4) * 0.07 + 's'); });
+            grid.classList.add('reveal-ready');
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (en) {
+                    if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); }
+                });
+            }, { rootMargin: '0px 0px -40px 0px' });
+            Array.prototype.forEach.call(cards, function (c) { io.observe(c); });
+            /* רשת ביטחון: אם משהו לא עבד, הכרטיסים לא נשארים מוסתרים */
+            setTimeout(function () {
+                Array.prototype.forEach.call(cards, function (c) { c.classList.add('is-visible'); });
+                io.disconnect();
+            }, 2500);
+        }
+
+        /* פס התקדמות, כותרת שמתעבה, וכפתור "חזרה למעלה" */
+        var header = document.querySelector('.site-header');
+        var bar = document.createElement('div');
+        bar.className = 'scroll-progress';
+        if (header) header.appendChild(bar);
+
+        var top = document.createElement('button');
+        top.type = 'button';
+        top.className = 'to-top';
+        top.title = 'חזרה למעלה';
+        top.setAttribute('aria-label', 'חזרה למעלה');
+        top.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+        top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
+        document.body.appendChild(top);
+
+        var ticking = false;
+        function onScroll() {
+            ticking = false;
+            var y = window.scrollY || document.documentElement.scrollTop;
+            var max = document.documentElement.scrollHeight - window.innerHeight;
+            bar.style.setProperty('--progress', max > 0 ? Math.min(1, y / max) : 0);
+            if (header) header.classList.toggle('scrolled', y > 8);
+            top.classList.toggle('show', y > 600);
+        }
+        window.addEventListener('scroll', function () {
+            if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+        }, { passive: true });
+        onScroll();
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         initFilters();
         initTabs();
         initCopy();
         initDialogs();
         initShare();
+        initEffects();
     });
 })();
