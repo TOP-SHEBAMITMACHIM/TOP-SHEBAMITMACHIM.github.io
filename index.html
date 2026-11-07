@@ -63,9 +63,21 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="search" id="projectSearch" placeholder="חיפוש…" aria-label="חיפוש פרויקט" autocomplete="off">
                 </label>
-                <div class="chips" role="group" aria-label="סינון לפי סוג"><button type="button" class="chip" data-filter="all" aria-pressed="true">הכל</button><button type="button" class="chip" data-filter="ext" aria-pressed="false">תוספים לכרום</button><button type="button" class="chip" data-filter="script" aria-pressed="false">סקריפטים</button><button type="button" class="chip" data-filter="win" aria-pressed="false">תוכנות לווינדוס</button><button type="button" class="chip" data-filter="android" aria-pressed="false">אנדרואיד</button></div>
+                <div class="chips" role="group" aria-label="סינון לפי סוג"><button type="button" class="chip" data-filter="all" aria-pressed="true">הכל</button><button type="button" class="chip" data-filter="ext" aria-pressed="false">תוספים לכרום</button><button type="button" class="chip" data-filter="script" aria-pressed="false">סקריפטים</button><button type="button" class="chip" data-filter="win" aria-pressed="false">תוכנות לווינדוס</button><button type="button" class="chip" data-filter="android" aria-pressed="false">אנדרואיד</button><button type="button" class="chip" data-filter="web" aria-pressed="false">אתרים</button></div>
             </div>
             <div class="grid" id="projectsGrid">
+                <a class="card" href="#kitzear" data-cat="web" data-keywords="קיצור קישורים מקצר לינק לינקים url shortener קישור קצר qr סטטיסטיקות" aria-haspopup="dialog">
+                    <span class="card-badge"><i class="fa-solid fa-star"></i> חדש</span>
+                    <div class="cover"><img src="img/cover-kitzear.webp" alt="" loading="lazy"></div>
+                    <div class="card-body">
+                        <h3>קיצער</h3>
+                        <p>מקצר קישורים בעברית, בחינם: קישור קצר עם שם משלכם, מונה לחיצות וקוד QR.</p>
+                        <div class="card-foot">
+                            <span class="card-platform" title="אתר – עובד בכל דפדפן"><i class="fa-solid fa-globe"></i> כל מכשיר</span>
+                            <span class="card-cta">כניסה והסבר <i class="fa-solid fa-arrow-left"></i></span>
+                        </div>
+                    </div>
+                </a>
                 <a class="card" href="#top-gif" data-cat="ext" data-keywords="gif גיף גיפים מדבקות ג&#x27;ימייל צאט" aria-haspopup="dialog">
                     
                     <div class="cover cover--icon" style="--c1:#7c3aed;--c2:#1e1b4b"><img src="img/top-gif.png" alt="" loading="lazy"></div>
@@ -298,6 +310,23 @@
             <div class="d-grid">
                 <div class="d-main"><section class="d-sec"><h3><i class="fa-solid fa-circle-info"></i> מה זה?</h3><p>AdShield חוסם פרסומות ומעקב בכל האפליקציות במכשיר, בלי צורך ב-root. הוא פותח "VPN" מקומי שלא מעביר את הגלישה לשום שרת – הוא רק בודק כל בקשת DNS מול רשימות חסימה, וחוסם כתובות של פרסומות.</p><p>מכיוון שרק שאילתות DNS עוברות דרכו, צריכת הסוללה נמוכה, וגלישה, בנקאות וסטרימינג ממשיכים לעבוד כרגיל. הממשק זמין בעברית ובאנגלית.</p></section><section class="d-sec"><h3><i class="fa-solid fa-star"></i> מה יש בו</h3><ul class="features"><li><b>חסימה בכל המכשיר</b> בלי root (דרך VpnService מקומי)</li><li><b>דפדפן מובנה</b> עם חסימת בקשות, הסתרת משבצות פרסומת וחסימת חלונות קופצים</li><li>לוח בקרה חי: חסימות היום, גרף שבועי ודומיינים מובילים</li><li>רשימות חסימה מתעדכנות, רשימה לבנה ורשימה שחורה</li><li>החרגת אפליקציות (למשל בנקאות) מהסינון</li><li>השהיה ל-5/15/60 דקות, אריח בהגדרות המהירות</li><li>DNS מוצפן (DoH) ובחירת ספק DNS</li><li><b>עדכון גרסה מתוך האפליקציה</b></li><li>מצב root אופציונלי – כתיבה לקובץ hosts של המערכת</li></ul></section><section class="d-sec"><h3><i class="fa-solid fa-download"></i> איך מתקינים</h3><div class="tab-panel" id="adshield-method-0"><ol class="steps"><li><h4>מורידים את ה-APK</h4><p>פותחים את הדף הזה בטלפון ומורידים את הקובץ (כ-16MB).</p><a class="btn btn-primary btn-sm" href="https://github.com/TOP-SHEBAMITMACHIM/AdShield/releases/download/v1.3.0/AdShield.apk"><i class="fa-solid fa-download"></i> הורדת AdShield.apk</a></li><li><h4>מאשרים התקנה ממקור לא מוכר</h4><p>פותחים את הקובץ שהורד. אם אנדרואיד מבקש – מאשרים <b>התקנת אפליקציות לא מוכרות</b> לדפדפן או למנהל הקבצים, וחוזרים להתקנה.</p></li><li><h4>מפעילים את ההגנה</h4><p>פותחים את AdShield, לוחצים על כפתור ההפעלה ומאשרים את <b>בקשת החיבור (VPN)</b>. מהרגע הזה הפרסומות נחסמות.</p></li><li><h4>(מומלץ) מחריגים אפליקציות רגישות</h4><p>אם אפליקציה מסוימת (בנק, VPN אחר) מתנהגת מוזר – מחריגים אותה בלשונית <b>אפליקציות</b>.</p></li></ol></div><div class="note"><i class="fa-solid fa-lightbulb"></i><div>אנדרואיד מאפשר VPN אחד בכל רגע – אם אתם משתמשים ב-VPN אחר, החסימה דרך המערכת לא תפעל במקביל אליו (הדפדפן המובנה ממשיך לחסום).</div></div><div class="note"><i class="fa-solid fa-lightbulb"></i><div>ה-APK לא מופץ בחנות, לכן Play Protect עשוי להציג אזהרה – זה צפוי. קוד המקור כולו פתוח בגיטהאב.</div></div></section></div>
                 <aside class="d-side"><div class="p-badges"><span class="badge green">אנדרואיד</span></div><ul class="facts"><li><span>גרסה</span><b>1.3.0</b></li><li><span>פלטפורמה</span><b>Android 7+</b></li><li><span>מחיר</span><b>חינם</b></li><li><span>דרישות</span><b>Android 7.0 ומעלה</b></li><li><span>דרישות</span><b>לא צריך root</b></li></ul></aside>
+            </div>
+        </div>
+    </dialog>
+    <dialog class="project-dialog" id="dlg-kitzear" data-project="kitzear" aria-labelledby="kitzear-title">
+        <div class="d-head">
+            <span class="p-icon" style="--c1:#8b5cf6;--c2:#2e1065" aria-hidden="true"><i class="fa-solid fa-link" style="font-size:1.5rem"></i></span>
+            <div class="d-title">
+                <h2 id="kitzear-title">קיצער – מקצר קישורים</h2>
+                <p>קישור ארוך? שתי שניות וזה קצר. עם סטטיסטיקות, קוד QR ושם משלכם.</p>
+            </div>
+            <button type="button" class="d-close" data-close aria-label="סגירה"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="d-scroll">
+            <div class="d-actions"><a class="btn btn-primary" href="https://kitzear.qd.je/" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> כניסה לקיצער</a><button type="button" class="btn btn-ghost" data-share data-share-url="https://top-shebamitmachim.github.io/#kitzear" data-share-title="קיצער – מקצר קישורים" title="שליחת הקישור לפרויקט לחברים"><i class="fa-solid fa-share-nodes"></i> שיתוף</button></div>
+            <div class="d-grid">
+                <div class="d-main"><section class="d-sec"><h3><i class="fa-solid fa-circle-info"></i> מה זה?</h3><p>קיצער הוא אתר בעברית לקיצור קישורים, בסגנון TinyURL. מדביקים קישור ארוך ומקבלים קישור קצר ונוח לשליחה – בוואטסאפ, במייל או בפורום.</p><p>אפשר לבחור לקישור שם משלכם (למשל <code>/sale-2026</code>), ולראות כמה אנשים לחצו עליו, מאיזה מכשיר ומאיזו מדינה. זה אתר, אז אין מה להוריד או להתקין – זה עובד בכל דפדפן, גם בטלפון.</p></section><section class="d-sec"><h3><i class="fa-solid fa-star"></i> מה יש בו</h3><ul class="features"><li>קישור קצר עם סיומת אקראית, או <b>שם שאתם בוחרים</b></li><li><b>מונה לחיצות</b> לכל קישור, וגרף של 14 הימים האחרונים</li><li>פילוח לפי מכשיר (מחשב / טלפון / טאבלט) ולפי מדינה</li><li><b>קוד QR</b> לכל קישור, עם הורדה כתמונה ושיתוף</li><li>התחברות עם חשבון Google, והקישורים נשמרים אצלכם</li><li>הכול בעמוד אחד: מקצרים וצופים בסטטיסטיקות באותו מקום</li><li>העתקה בלחיצה ומחיקת קישורים</li><li>ממשק מלא בעברית, עם מצב יום ולילה</li></ul></section><section class="d-sec"><h3><i class="fa-solid fa-play"></i> איך משתמשים</h3><div class="tab-panel" id="kitzear-method-0"><ol class="steps"><li><h4>נכנסים לאתר</h4><p>פותחים את <a href="https://kitzear.qd.je/" target="_blank" rel="noopener">kitzear.qd.je</a> – במחשב או בטלפון.</p><a class="btn btn-primary btn-sm" href="https://kitzear.qd.je/" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> כניסה לקיצער</a></li><li><h4>מתחברים עם Google</h4><p>לוחצים על כפתור ההתחברות. כך הקישורים והסטטיסטיקות שלכם נשמרים בחשבון.</p></li><li><h4>מדביקים קישור ארוך</h4><p>מדביקים את הקישור בתיבה. אם רוצים – כותבים שם משלכם לסיומת, ולוחצים לקצר.</p></li><li><h4>מעתיקים ושולחים</h4><p>לוחצים להעתקה, או מורידים את קוד ה-QR. מתחת לכל קישור רואים כמה לחצו עליו.</p></li></ol></div><div class="note"><i class="fa-solid fa-lightbulb"></i><div>כדי להציג סטטיסטיקות, האתר שומר על כל לחיצה רק את סוג המכשיר, המדינה ומאיזה אתר הגיעו – בלי שם, בלי כתובת IP ובלי פרטים אישיים של מי שלחץ.</div></div></section></div>
+                <aside class="d-side"><div class="p-badges"><span class="badge">אתרים</span></div><ul class="facts"><li><span>סוג</span><b>אתר</b></li><li><span>פלטפורמה</span><b>כל דפדפן</b></li><li><span>מחיר</span><b>חינם</b></li><li><span>דרישות</span><b>חשבון Google</b></li></ul></aside>
             </div>
         </div>
     </dialog>
