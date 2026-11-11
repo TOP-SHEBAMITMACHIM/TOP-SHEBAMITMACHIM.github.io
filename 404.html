@@ -2,51 +2,61 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <script>
+        /* הבלוג עבר לשרת משלו. מי שנכנס דרך הכתובת הישנה בגיטהאב מועבר לאותו מקום בכתובת החדשה */
+        if (location.hostname === 'top-shebamitmachim.github.io') {
+            location.replace('https://kitzear.qd.je/blog' + location.pathname + location.search + location.hash);
+        }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>הדף לא נמצא | טופ שבמתמחים</title>
     <script>
         /* קישורים ישנים: האתר עבר מ-/BLOG/ לשורש הדומיין, וכל דפי הפרויקטים אוחדו לדף אחד */
         (function () {
+            if (location.hostname === 'top-shebamitmachim.github.io') return;  /* שם כבר מופנים לשרת */
             var MOVED = {
-                'top-gif.html': '/#top-gif',
-                'chatsapp.html': '/#chatsapp',
-                'guide.html': '/#chat-formatter',
-                'mit.html': '/#quick-reply',
-                'emogi.html': '/#emoji',
-                'link-to-new-guide.html': '/#link-cleaner',
-                'convertop.html': '/#convertop',
-                'adshield.html': '/#adshield',
-                'index.html': '/',
-                'guide-pic.png': '/img/guide-tampermonkey.png',
-                'guide-pic-2.png': '/img/shot-chat-formatter.png',
-                'pic3.png': '/img/guide-dev-mode.png',
-                'pic4.png': '/img/guide-load-unpacked.png',
-                'pic-mit.png': '/img/shot-quick-reply.png',
-                'gif.gif': '/img/shot-emoji.gif'
+                'top-gif.html': '/blog/#top-gif',
+                'chatsapp.html': '/blog/#chatsapp',
+                'guide.html': '/blog/#chat-formatter',
+                'mit.html': '/blog/#quick-reply',
+                'emogi.html': '/blog/#emoji',
+                'link-to-new-guide.html': '/blog/#link-cleaner',
+                'convertop.html': '/blog/#convertop',
+                'adshield.html': '/blog/#adshield',
+                'index.html': '/blog/',
+                'guide-pic.png': '/blog/img/guide-tampermonkey.png',
+                'guide-pic-2.png': '/blog/img/shot-chat-formatter.png',
+                'pic3.png': '/blog/img/guide-dev-mode.png',
+                'pic4.png': '/blog/img/guide-load-unpacked.png',
+                'pic-mit.png': '/blog/img/shot-quick-reply.png',
+                'gif.gif': '/blog/img/shot-emoji.gif'
             };
             var path = location.pathname;
             try { path = decodeURIComponent(path); } catch (err) { /* כתובת לא תקינה */ }
-            path = path.replace(/^\/BLOG(?=\/|$)/i, '') || '/';
-            var name = path.replace(/^\/+/, '').toLowerCase();
-            var target = MOVED[name] || (path !== location.pathname ? path : null);
+            /* מסירים את /blog ואת /BLOG הישן (גם כשהם מופיעים פעמיים, מהפניה מגיטהאב) */
+            var rest = path.replace(/^(\/blog)+(?=\/|$)/i, '');
+            var name = rest.replace(/^\/+/, '').toLowerCase();
+            var target = MOVED[name] || null;
+            /* קובץ אמיתי שהגיע עם /BLOG/ מיותר בדרך — מנסים בלי הקידומת העודפת */
+            if (!target && rest && ('/blog' + rest) !== path) target = '/blog' + rest;
             if (target) location.replace(target.indexOf('#') === -1 ? target + location.search + location.hash : target);
         })();
     </script>
-    <link rel="icon" type="image/png" href="/img/favicon.png?v=2">
+    <link rel="icon" type="image/png" href="/blog/img/favicon.png?v=2">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/theme.css">
-    <link rel="stylesheet" href="/main.css">
-    <script src="/site.js"></script>
+    <link rel="stylesheet" href="/blog/theme.css">
+    <link rel="stylesheet" href="/blog/main.css">
+    <script src="/blog/site.js"></script>
 </head>
 <body>
     <div class="bg-glow" aria-hidden="true"></div>
     <main class="hero container" style="flex:1">
-        <img class="hero-logo" src="/img/logo.webp?v=2" alt="לוגו טופ שבמתמחים" width="128" height="128">
+        <img class="hero-logo" src="/blog/img/logo.webp?v=2" alt="לוגו טופ שבמתמחים" width="128" height="128">
         <h1>הדף לא נמצא</h1>
         <p class="hero-lead">ייתכן שהקישור ישן או שהדף הועבר.</p>
         <div class="hero-actions">
-            <a class="btn btn-primary" href="/"><i class="fa-solid fa-house"></i> לדף הבית</a>
+            <a class="btn btn-primary" href="/blog/"><i class="fa-solid fa-house"></i> לדף הבית</a>
         </div>
     </main>
 </body>

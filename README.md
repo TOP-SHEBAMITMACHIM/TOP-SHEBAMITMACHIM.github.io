@@ -1,3 +1,3 @@
 # BLOG – טופ שבמתמחים
 
-האתר: https://top-shebamitmachim.github.io/
+האתר: https://kitzear.qd.je/blog/

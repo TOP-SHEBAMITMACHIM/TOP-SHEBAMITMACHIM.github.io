@@ -195,7 +195,7 @@
 
     /* ---------- 5. שיתוף ----------
        כל כפתור עם data-share פותח את חלונית השיתוף. בלי data-share-url משתפים את האתר כולו. */
-    var SITE_URL = 'https://top-shebamitmachim.github.io/';
+    var SITE_URL = 'https://kitzear.qd.je/blog/';
     var SITE_TEXT = 'טופ שבמתמחים – תוכנות, תוספים וסקריפטים חינמיים עם מדריכי התקנה בעברית';
 
     function initShare() {
